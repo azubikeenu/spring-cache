@@ -2,6 +2,9 @@ server:
   port: 8001
 
 spring:
+  cache:
+    jcache:
+      config: classpath:ehcache.xml
   jpa:
     show-sql: true
     defer-datasource-initialization: true
@@ -11,3 +14,5 @@ spring:
   h2:
     console:
       enabled: true
+
+

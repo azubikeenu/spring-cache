@@ -1,4 +1,4 @@
-package com.azubike.ellipsis.spring_cache.errors;
+package com.azubike.ellipsis.spring_cache.exceptions;
 
 public class BookNotFoundException extends RuntimeException {
 

@@ -1,7 +1,7 @@
 package com.azubike.ellipsis.spring_cache.web.controllers.aop;
 
-import com.azubike.ellipsis.spring_cache.errors.BookNotFoundException;
-import com.azubike.ellipsis.spring_cache.errors.response.ErrorMessage;
+import com.azubike.ellipsis.spring_cache.exceptions.BookNotFoundException;
+import com.azubike.ellipsis.spring_cache.exceptions.response.ErrorMessage;
 import java.util.Date;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;

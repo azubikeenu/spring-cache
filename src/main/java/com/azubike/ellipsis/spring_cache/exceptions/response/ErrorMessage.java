@@ -1,4 +1,4 @@
-package com.azubike.ellipsis.spring_cache.errors.response;
+package com.azubike.ellipsis.spring_cache.exceptions.response;
 
 import java.util.Date;
 import lombok.AllArgsConstructor;

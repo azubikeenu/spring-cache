@@ -2,10 +2,12 @@ package com.azubike.ellipsis.spring_cache.web.controllers;
 
 import com.azubike.ellipsis.spring_cache.services.BookService;
 import com.azubike.ellipsis.spring_cache.web.model.BookDto;
+import com.azubike.ellipsis.spring_cache.web.model.BookPageList;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
 import java.net.URI;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -18,6 +20,18 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 @RequiredArgsConstructor
 public class BookController {
   private final BookService bookService;
+  private final Integer DEFAULT_PAGE_NUMBER = 0;
+  private final Integer DEFAULT_PAGE_SIZE = 10;
+
+  @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
+  ResponseEntity<BookPageList> getBooks(
+      @RequestParam(value = "pageNumber", required = false, defaultValue = "0") Integer pageNumber,
+      @RequestParam(value = "pageSize", required = false, defaultValue = "10") Integer pageSize) {
+    if (pageNumber < 0) pageNumber = DEFAULT_PAGE_NUMBER;
+    if (pageSize < 1) pageSize = DEFAULT_PAGE_SIZE;
+    BookPageList bookPageList = bookService.getBooks(PageRequest.of(pageNumber, pageSize));
+    return ResponseEntity.ok(bookPageList);
+  }
 
   @GetMapping(value = "/{bookId}", produces = MediaType.APPLICATION_JSON_VALUE)
   ResponseEntity<BookDto> getBookById(@PathVariable("bookId") long bookId) {
