@@ -57,7 +57,7 @@ public class BookServiceImpl implements BookService {
   }
 
   @Override
-  @Cacheable(key = "bookList")
+  @Cacheable(cacheNames = "bookList")
   public BookPageList getBooks(final PageRequest pageRequest) {
     final Page<Book> bookPage = bookRepository.findAll(pageRequest);
     return new BookPageList(
